@@ -76,7 +76,7 @@ class ReservationWS extends Hotel {
   return $this->returnGetCancellationFee($result);
  }
  
- function returnGetPreviousRG($touricoResult){
+ function returnGetCancellationFee($touricoResult){
  
   $nResID = $link->nResID->nResID;
   $clxDate = $link->clxDate->clxDate;  
