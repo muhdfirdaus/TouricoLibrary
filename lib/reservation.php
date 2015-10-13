@@ -33,12 +33,12 @@ class ReservationWS extends Hotel {
  function returnCancelReservations($touricoResult) {
  
   $link = $touricoResult->envelop;
- 
+ 	$tc = 'true (Cancellation)';
+	$fc = 'false (Cancellation) ';
   $CancelReservationResult =[
      
-    'true(Cancellation)' => $link->CancelReservationResult->true(Cancellation),
-    'false(Cancellation)' => $link->CancelReservationResult->false(Cancellation),
-    'false(Cancellation)' => $link->CancelReservationResult->false(Cancellation),     
+    'true (Cancellation)' => $link->CancelReservationResult->$tc,
+    'false (Cancellation)' => $link->CancelReservationResult->$fc 
   ];
   
   return $CancelReservationResult;

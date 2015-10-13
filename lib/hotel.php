@@ -45,8 +45,8 @@ class Hotel {
 				'NumOfRoom' => $link->Hotel->NumOfRoom,
 				'bestValue' => $link->Hotel->bestValue,
 				'HotelId' => $link->Hotel->HotelId,
-				'provider(Name)' => $link->Hotel->provider(Name),
-				'name(Hotel)' => $link->Hotel->name(Hotel),
+				'provider (Name)' => $link->Hotel->provider (Name),
+				'name (Hotel)' => $link->Hotel->name (Hotel),
 				'thumb' => $link->Hotel->thumb,
 				'currency' => $link->Hotel->currency,
 				'minAverPrice' => $link->Hotel->minAverPrice,
@@ -75,7 +75,7 @@ class Hotel {
 				'roomTypeCategory' => $link->RoomType->roomTypeCategory,
 				'roomTypeCategoryId' => $link->RoomType->roomTypeCategoryId,
 				'nights' => $link->RoomType->nights,
-				'name(Room Type)' => $link->RoomType->name(RoomType),
+				'name (Room Type)' => $link->RoomType->name (RoomType),
 				'productId' => $link->RoomType->productId,
 				'startDate' => $link->RoomType->startDate,
 				'hotelRoomTypeId' => $link->RoomType->hotelRoomTypeId,
@@ -86,7 +86,7 @@ class Hotel {
 		$AvailabilityBreakdown = [
 					
 				'offset' => $link->AvailabilityBreakdown->offset,
-				'status(Availability)' => $link->AvailabilityBreakdown->status(Availability)
+				'status (Availability)' => $link->AvailabilityBreakdown->status (Availability)
 		];
 			
 		$Discount = [
@@ -170,8 +170,8 @@ class Hotel {
 				'NumOfRoom' => $link->Hotel->NumOfRoom,
 				'bestValue' => $link->Hotel->bestValue,
 				'HotelId' => $link->Hotel->HotelId,
-				'provider(Name)' => $link->Hotel->provider(Name),
-				'name(Hotel)' => $link->Hotel->name(Hotel),
+				'provider (Name)' => $link->Hotel->provider (Name),
+				'name (Hotel)' => $link->Hotel->name (Hotel),
 				'thumb' => $link->Hotel->thumb,
 				'currency' => $link->Hotel->currency,
 				'minAverPrice' => $link->Hotel->minAverPrice,
@@ -200,7 +200,7 @@ class Hotel {
 				'roomTypeCategory' => $link->RoomType->roomTypeCategory,
 				'roomTypeCategoryId' => $link->RoomType->roomTypeCategoryId,
 				'nights' => $link->RoomType->nights,
-				'name(Room Type)' => $link->RoomType->name(RoomType),
+				'name (Room Type)' => $link->RoomType->name (RoomType),
 				'productId' => $link->RoomType->productId,
 				'startDate' => $link->RoomType->startDate,
 				'hotelRoomTypeId' => $link->RoomType->hotelRoomTypeId,
@@ -274,14 +274,14 @@ class Hotel {
 	
 	}
 	
-	function SearchHotelsByDestination($params){
+	function SearchHotelsByDestinationIds($params){
 			
 		$client = new soapClient($this->baseUrl);
-		$result	= $client -> SearchHotelsById($this->convertParamsIntoTouricoParams($params));
-		return $this->returnSearchHotelsDestination($result);
+		$result	= $client -> SearchHotelsByDestinationIds($this->convertParamsIntoTouricoParams($params));
+		return $this->returnSearchHotelsByDestinationIds($result);
 	}
 	
-	function returnSearchHotelsByDestination($touricoresult) {
+	function returnSearchHotelsByDestinationIds($touricoresult) {
 	
 		$link = $touricoResult->envelop;
 	
@@ -294,8 +294,8 @@ class Hotel {
 				'NumOfRoom' => $link->Hotel->NumOfRoom,
 				'bestValue' => $link->Hotel->bestValue,
 				'HotelId' => $link->Hotel->HotelId,
-				'provider(Name)' => $link->Hotel->provider(Name),
-				'name(Hotel)' => $link->Hotel->name(Hotel),
+				'provider (Name)' => $link->Hotel->provider (Name),
+				'name (Hotel)' => $link->Hotel->name (Hotel),
 				'thumb' => $link->Hotel->thumb,
 				'currency' => $link->Hotel->currency,
 				'minAverPrice' => $link->Hotel->minAverPrice,
@@ -317,14 +317,14 @@ class Hotel {
 				'longitude' => $link->Location->longitude,
 				'latitude' => $link->Location->latitude
 		];
-			
+		$rt = 'name (Room Type)';
 		$RoomType = [
 	
 				'NumOfBathrooms' => $link->RoomType->NumOfBathrooms,
 				'roomTypeCategory' => $link->RoomType->roomTypeCategory,
 				'roomTypeCategoryId' => $link->RoomType->roomTypeCategoryId,
 				'nights' => $link->RoomType->nights,
-				'name(Room Type)' => $link->RoomType->name(RoomType),
+				'name (Room Type)' => $link->RoomType->$rt,
 				'productId' => $link->RoomType->productId,
 				'startDate' => $link->RoomType->startDate,
 				'hotelRoomTypeId' => $link->RoomType->hotelRoomTypeId,
@@ -335,7 +335,7 @@ class Hotel {
 		$AvailabilityBreakdown = [
 	
 				'offset' => $link->AvailabilityBreakdown->offset,
-				'status(Availability)' =>  $link->AvailabilityBreakdown->status(Availability)
+				'status (Availability)' =>  $link->AvailabilityBreakdown->status (Availability)
 		];
 			
 		$Discount = [
@@ -487,8 +487,8 @@ class Hotel {
   		'NumofRoom' => $link->Hotel->NumofRoom,
   		'bestValue' => $link->Hotel->bestValue,
   		'HotelId' => $link->Hotel->HotelId,
-  		'provider(Name)' => $link->Hotel->provider(Name),
-  		'name(Hotel)' => $link->Hotel->name(Hotel),
+  		'provider (Name)' => $link->Hotel->provider (Name),
+  		'name (Hotel)' => $link->Hotel->name (Hotel),
   		'thumb' => $link->Hotel->thumb,
   		'currency' => $link->Hotel->currency,
   		'minAverPrice' => $link->Hotel->minAverPrice,
@@ -508,13 +508,13 @@ class Hotel {
 		'longitude' => $link->Location->longitude,
 		'latitude' => $link->Location->latitude
 		];
-		
+		$rt = 'name (Room Type)';
 		$RoomType = [
 		'NumOfBathrooms' => $link->RoomType->NumOfBathrooms,
 		'roomTypeCategory' => $link->RoomType->roomTypeCategory,
 		'roomTypeCategoryId' => $link->RoomType->roomTypeCategoryId,
 		'nights' => $link->RoomType->nights,
-		'name(Room Type)' => $link->RoomType->name(RoomType),
+		'name (Room Type)' => $link->RoomType->$rt,
 		'productId' => $link->RoomType->productId,
 		'startDate' => $link->RoomType->startDate,
 		'hotelRoomTypeId' => $link->RoomType->hotelRoomTypeId,
@@ -524,7 +524,7 @@ class Hotel {
 		
 		$AvailabilityBreakdown = [
 		'offset' => $link->AvailabilityBreakdown->offset,
-		'status(Availability)' => $link->AvailabilityBreakdown->status(Availability)
+		'status (Availability)' => $link->AvailabilityBreakdown->status (Availability)
 		];
 		
 		$Discount = [
