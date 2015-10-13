@@ -34,8 +34,9 @@ class RecoWs extends Hotel {
 
 	function returnGetInvoices($touricoResult) {
 		$link = $touricoResult->envelop;
+		$in = 'invoice number';
   		$Item = [
- 		'invoice number' => $link->Item->invoicenumber
+ 		'invoice number' => $link->Item->$in
    		];
 		return $Item;
 	}
@@ -48,6 +49,7 @@ class RecoWs extends Hotel {
 
 	function returnGetInvoicesDetails($touricoResult) {
 		$link = $touricoResult->envelop;
+		$cd = 'Creation Date';
   		$Invoice = [
  		'InvoiceNumber' => $link->Invoice->InvoiceNumber,
  		'RGID' => $link->Invoice->RGID,
@@ -73,7 +75,7 @@ class RecoWs extends Hotel {
  		'AgentRefNumber' => $link->Invoice->AgentRefNumber,
  		'ReservationDate' => $link->Invoice->ReservationDate,
  		'DocumentPaymentDate' => $link->Invoice->DocumentPaymentDate,
- 		'CreationDate' => $link->Invoice->CreationDate
+ 		'CreationDate' => $link->Invoice->$cd
    		];
 		return $Invoice;
 	}
@@ -87,10 +89,10 @@ class RecoWs extends Hotel {
 	function returnGetReceipts($touricoResult) {
  
  		$link = $touricoResult->envelop;
- 
+ 		$rn = 'receipt number';
  		$item = [
    
-   		'receiptnumber' => $link->item->receiptnumber
+   		'receipt number' => $link->item->$rn
  		]; 
  		return $item; 
 	}
@@ -105,11 +107,11 @@ class RecoWs extends Hotel {
 	function returnGetReceiptDetails($touricoResult) {
  
  		$link = $touricoResult->envelop;
- 
+ 		$dt = 'Document Type';
  		$Receipt = [
    
   	 	'ReceiptNumber' => $link->Receipt->ReceiptNumber,
-   		'DocumentType' => $link->Receipt->DocumentType,
+   		'Document Type' => $link->Receipt->$dt,
    		'SystemAmount' => $link->Receipt->SystemAmount,
    		'SystemCurrency' => $link->Receipt->SystemCurrency,
    		'LocalAmount' => $link->Receipt->LocalAmount,
