@@ -1,0 +1,6 @@
+{
+	"name": "tourico/lib",
+    "require": {
+        "monolog/monolog": "1.0.*"
+    }
+}

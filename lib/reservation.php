@@ -1,4 +1,6 @@
-<?php
+<?php 
+
+require '../vendor/autoload.php';
 class Settings {
 public $username;
 public $testEnvironment;
