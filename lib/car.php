@@ -281,7 +281,80 @@ class Car{
  	return $Rules.$Rule;
  		
  }
+ function BookCar($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->BookCar($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnBookCar($result);
+	}
+
+	function returnBookCar($touricoResult) {
+		$link = $touricoResult->envelop;
+		$RGID = $link->ResGroup (Cars)->reservationID;
+		$ReservationID = $link->Reservation (Cars)->reservationID; 
+		$Status = [
+ 		'Confirm (Reservation)' => $link->Reservation (Cars)->Confirm (Reservation),
+ 		'Request (Reservation)' => $link->Reservation (Cars)->Request (Reservation)
+   		];
+		$Pnr = $link->Pnr->pnr;
+		$MandatoryFeesDueAtPickup  = [
+		'price' => $link->MandatoryFeesDueAtPickup ->price,
+		'currency' => $link->MandatoryFeesDueAtPickup ->currency
+		];
+		return $RGID.$ReservationID.$Status.$Pnr.$MandatoryFeesDueAtPickup;
+	}
+	function CancelCar($params) {
+
+  		$client = new SoapClient($this->baseUrl);
+  		$result = $client->CancelCar($this->convertParamsIntoTouricoParams($params));
+  		return $this->returnCancelCar($result);
+	}
+
+	function returnCancelCar($touricoResult) {
+ 		$link = $touricoResult->envelop;
+		$tc = 'true (Cancellation)';
+		$fc = 'false (Cancellation)';
+		$CarCancellationResult = [
+			'true (Cancellation)' => $link->CarCancellationResult->$tc,
+			'false (Cancellation)' => $link->CarCancellationResult->$fc
+		];
+		return $CarCancellationResult;
+	}
+	function GetRGInfo($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->GetRGInfo($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnGetRGInfo($result);
+	}
+
+	function returnGetRGInfo($touricoResult) {
+		$link = $touricoResult->envelop;
+		$ResGroup = [
+		'RGID' => $link->ResGroup->RGID,
+		'isPackage' => $link->ResGroup->isPackage,
+		'totalPrice' => $link->ResGroup->totalPrice,
+		'currency' => $link->ResGroup->currency,
+		'tranNum' => $link->ResGroup->tranNum,
+		'rgidRefNumber' => $link->ResGroup->rgidRefNumber
+		];
+		$Reservation = [
+		'reservationId' => $link->Reservation->reservationID,
+		'pickUpDate' => $link->Reservation->pickUpDate,
+		'pickUpTime' => $link->Reservation->pickUpTime,
+		'toDate' => $link->Reservation->toDate,
+		'pnr' => $link->Reservation->pnr,
+		'tranNum' => $link->Reservation->tranNum,
+		'agentRefNumber' => $link->Reservation->agentRefNumber,
+		];
+		$MandatoryFeesDueAtPickup  = [
+		'price' => $link->MandatoryFeesDueAtPickup->price,
+		'currency' => $link->MandatoryFeesDueAtPickup->currency
+		];
+		return $ResGroup.$Reservation.$MandatoryFeesDueAtPickup;
+	}
  
-}
-  
+ 
+ 
+ 
+ } 
  ?>
