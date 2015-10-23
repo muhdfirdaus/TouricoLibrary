@@ -448,8 +448,8 @@ class Hotel {
 			'unit' => $link->RefPoints->unit
 		];
 		$VoucherRemark = $link->VoucherRemark->VoucherRemark;
-		$ShortDescription = $link->VoucherRemark->ShortDescription;
-		$LongDescription = $link->VoucherRemark->LongDescription;
+		$ShortDescription = $link->ShortDescription->ShortDescription;
+		$LongDescription = $link->LongDescription->LongDescription;
 		$Images = [
 			'type' => $link->Images->type,
 			'path' => $link->Images->path
