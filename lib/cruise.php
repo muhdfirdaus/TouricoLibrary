@@ -180,6 +180,216 @@ class Cruise{
 	];
 	return $AmenityTypeList.$CruiseLinesConfiguration.$CruiseMarketList.$PassengerGenderList.$PassengerTitlesList.$PhonePrefixesList.$ShipRatingList;
 	}
+
+	function GetEmbarkationPortsByDestination($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->GetEmbarkationPortsByDestination($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnGetEmbarkationPortsByDestination($result);
+	}
+
+	function returnGetEmbarkationPortsByDestination($touricoResult) {
+		$link = $touricoResult->envelop;
+
+		$Embarkation = [
+ 		'Destination/DestinationId' => $link->Destination/DestinationId,
+ 		'Port/Id' => $link->Port/Id,
+ 		'Port/Name' => $link->Port/Name
+   		];
+		return $Embarkation;
+	}
+	
+	function GetPortsAll($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->GetPortsAll($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnGetPortsAll($result);
+	}
+
+	function returnGetPortsAll($touricoResult) {
+		$link = $touricoResult->envelop;
+
+		$GetPortsAll = [
+ 		'Port/Id' => $link->Port/Id,
+ 		'Port/Name' => $link->Port/Name,
+ 		'Port/PortImg' => $link->Port/PortImg,
+ 		'Port/Description' => $link->Port/Description,
+ 		'Port/Latitude' => $link->Port/Latitude,
+ 		'Port/Longitude' => $link->Port/Longitude
+   		];
+		return $GetPortsAll;
+	}
+	
+	function GetShipDetails($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->GetShipDetails($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnGetShipDetails($result);
+	}
+
+	function returnGetShipDetails($touricoResult) {
+		$link = $touricoResult->envelop;
+
+		$Ship = [
+ 		'Ship/Id' => $link->Ship/Id,
+ 		'Ship/Name' => $link->Ship/Name,
+ 		'Ship/CruiseLineID' => $link->Ship/CruiseLineID,
+ 		'Ship/Img' => $link->Ship/Img,
+ 		'Ship/Description' => $link->Ship/Description,
+ 		'Ship/ShipRating' => $link->Ship/ShipRating,
+ 		'ShipImage/SmallImg' => $link->ShipImage/SmallImg,
+ 		'ShipImage/BigImg' => $link->ShipImage/BigImg
+   		];
+		$Amenity = [
+ 		'Amenity/Type' => $link->Amenity/Type,
+ 		'Amenity/Name' => $link->Amenity/Name
+   		];
+		$Deck = [
+ 		'Deck/Number' => $link->Deck/Number,
+ 		'Deck/Name' => $link->Deck/Name,
+ 		'Deck/Img' => $link->Deck/Img
+   		];
+		$DeckCategory = [
+		'DeckCategory/DeckImg' => $link->DeckCategory/DeckImg,
+ 		'DeckCategory/CategoryCode' => $link->DeckCategory/CategoryCode
+ 		];
+		$Public = [
+		'PublicArea/Name' => $link->PublicArea/Name,
+ 		'PublicArea/Img' => $link->PublicArea/Img,
+ 		'PublicArea/DeckNumber' => $link->PublicArea/DeckNumber
+ 		];
+		$ShipCabinCategory = [
+		'ShipCabinCategory/CategoryCode' => $link->ShipCabinCategory/CategoryCode,
+		'ShipCabinCategory/Name' => $link->ShipCabinCategory/Name,
+ 		'ShipCabinCategory/LargeImg' => $link->ShipCabinCategory/LargeImg,
+ 		'ShipCabinCategory/SmallImg' => $link->ShipCabinCategory/SmallImg,
+ 		'ShipCabinCategory/Description' => $link->ShipCabinCategory/Description
+ 		];
+		return $Ship.$Amenity.$Deck.$DeckCategory.$Public.$ShipCabinCategory;
+	}
+	function SearchCruises($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->SearchCruises($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnSearchCruises($result);
+	}
+
+	function returnSearchCruises($touricoResult) {
+		$link = $touricoResult->envelop;
+
+		$Cruise = [
+ 		'Cruise/CruiseLineID' => $link->Cruise/CruiseLineID,
+ 		'Cruise/CruiseLineName' => $link->Cruise/CruiseLineName,
+ 		'Cruise/CruiseLineLogo' => $link->Cruise/CruiseLineLogo,
+ 		'Cruise/ShipId' => $link->Cruise/ShipId,
+ 		'Cruise/ShipName' => $link->Cruise/ShipName,
+ 		'Cruise/ShipImg' => $link->Cruise/ShipImg,
+ 		'Cruise/CruiseLength' => $link->Cruise/CruiseLength,
+ 		'Cruise/TaxesIncluded' => $link->Cruise/TaxesIncluded,
+ 		'Cruise/Tax' => $link->Cruise/Tax,
+ 		'Cruise/Currency' => $link->Cruise/Currency,
+ 		'Cruise/DeparturePortID' => $link->Cruise/DeparturePortID,
+ 		'Cruise/ShipRating' => $link->Cruise/ShipRating,
+ 		'Cruise/DeparturePortName' => $link->Cruise/DeparturePortName
+   		];
+		$Itinerary = [
+ 		'Itinerary/IteneraryId' => $link->Itenerary/IteneraryId,
+ 		'Itenerary/Name' => $link->Itenerary/Name,
+ 		'Itenerary/MapImg' => $link->Itenerary/MapImg
+   		];
+		$Segment = [
+ 		'Segment/Order' => $link->Segment/Order,
+ 		'Segment/Day' => $link->Segment/Day,
+ 		'Segment/PortId' => $link->Segment/PortId,
+ 		'Segment/PortName' => $link->Segment/PortName,
+ 		'Segment/Arrival' => $link->Segment/Arrival,
+ 		'Segment/Departure' => $link->Segment/Departure
+   		];
+		$Sailing = [
+		'Sailing/SailingID' => $link->Sailing/SailingID,
+		'Sailing/IN_PricePublish' => $link->Sailing/IN_PublishPrice,
+ 		'Sailing/OV_PricePublish' => $link->Sailing/OV_PricePublish,
+ 		'Sailing/BL_PricePublish' => $link->Sailing/BL_PricePublish,
+ 		'Sailing/ST_PricePublish' => $link->Sailing/ST_PricePublish,
+ 		'Sailing/IN_Price' => $link->Sailing/IN_Price,
+ 		'Sailing/OV_Price' => $link->Sailing/OV_Price,
+ 		'Sailing/BL_Price' => $link->Sailing/BL_Price,
+ 		'Sailing/ST_Price' => $link->Sailing/ST_Price,
+ 		'Sailing/Departure' => $link->Sailing/Departure,
+ 		'Sailing/Arrival' => $link->Sailing/Arrival
+ 		];
+		$Incentive = [
+		'Incentive/Title' => $link->Incentive/Title,
+ 		'Incentive/Description' => $link->Incentive/Description
+ 		];
+		return $Cruise.$Itenerary.$Segment.$Sailing.$Incentive;
+	}
+	function SelectCabin($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->SelectCabin($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnSelectCabin($result);
+	}
+
+	function returnSelectCabin($touricoResult) {
+		$link = $touricoResult->envelop;
+
+		$Cabin= [
+ 		'Cabin/CabinNumber' => $link->Cabin/CabinNumber,
+ 		'Cabin/DeckName' => $link->Cabin/DeckName,
+ 		'Cabin/DeckNumber' => $link->Cabin/DeckNumber,
+ 		'Cabin/DeckImg' => $link->Cabin/DeckImg,
+ 		'Cabin/IsGuaranteed' => $link->Cabin/IsGuaranteed
+   		];
+		$DiningSeating = [
+ 		'DiningSeating/DiningCode' => $link->DiningSeating/DiningCode,
+ 		'DiningSeating/DiningName' => $link->DiningSeating/DiningName,
+ 		'DiningSeating/Status' => $link->DiningSeating/Status,
+ 		'DiningSeating/AdditionalPricePerPerson' => $link->DiningSeating/AdditionalPricePerPerson
+   		];
+		
+		return $Cabin.$DiningSeating;
+	}
+	function SelectCabinCategory($params) {
+
+  	$client = new SoapClient($this->baseUrl);
+  	$result = $client->SelectCabinCategory($this->convertParamsIntoTouricoParams($params));
+  	return $this->returnSelectCabinCategory($result);
+	}
+
+	function returnSelectCabinCategory($touricoResult) {
+		$link = $touricoResult->envelop;
+
+		$CabinCategory= [
+ 		'CabinCategory/Code' => $link->CabinCategory/Code,
+ 		'CabinCategory/Name' => $link->CabinCategory/Name,
+ 		'CabinCategory/Type' => $link->CabinCategory/Type,
+ 		'CabinCategory/Description' => $link->CabinCategory/Description,
+ 		'CabinCategory/DeckName' => $link->CabinCategory/DeckName,
+ 		'CabinCategory/Img' => $link->CabinCategory/Img,
+ 		'CabinCategory/IsGuaranteed' => $link->CabinCategory/IsGuaranteed
+   		];
+		$CabinCategoryPrice= [
+ 		'CabinCategoryPrice/PriceTitle' => $link->CabinCategoryPrice/PriceTitle,
+ 		'CabinCategoryPrice/TaxesIncluded' => $link->CabinCategoryPrice/TaxesIncluded,
+ 		'CabinCategoryPrice/PricePublish' => $link->CabinCategoryPrice/PricePublish,
+ 		'CabinCategoryPrice/Price' => $link->CabinCategoryPrice/Price,
+ 		'CabinCategoryPrice/UpgradeToCategoryCode' => $link->CabinCategoryPrice/UpgradeToCategoryCode,
+ 		'CabinCategoryPrice/ProductID' => $link->CabinCategoryPrice/ProductID,
+ 		'CabinCategoryPrice/NonRefundable' => $link->CabinCategoryPrice/NonRefundable,
+ 		'CabinCategoryPrice/Tax' => $link->CabinCategoryPrice/Tax,
+ 		'CabinCategoryPrice/NCF' => $link->CabinCategoryPrice/NCF
+   		];
+		$CLXPolicyText = $link->CLXPolicyText;
+		$DiningSeating = [
+ 		'DiningSeating/DiningCode' => $link->DiningSeating/DiningCode,
+ 		'DiningSeating/DiningName' => $link->DiningSeating/DiningName,
+ 		'DiningSeating/Status' => $link->DiningSeating/Status,
+ 		'DiningSeating/AdditionalPricePerPerson' => $link->DiningSeating/AdditionalPricePerPerson
+   		];
+		
+		return $CabinCategory.$CabinCategoryPrice.$CLXPolicyText.$DiningStation;
+	}
 }
 
 ?>
