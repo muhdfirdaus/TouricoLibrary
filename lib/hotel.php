@@ -3,12 +3,18 @@
 require '../vendor/autoload.php';
 class Settings {
 public $username;
+public $password;
+public $culture;
+public $version;
 public $testEnvironment;
 /**
  * In the array settings the "testEnvironment" is optional, being "false" the default value if it is not specified
  */
 public function __constructor($settings) {
   $this->username = $settings["user"];
+  $this->password = $settings["password"];
+  $this->culture = $settings["culture"];
+  $this->version = $settings["version"];
   $this->testEnvironment = isset($settings["testEnvironment"]) ? $settings["testEnvironment"] : false;
 }
 }

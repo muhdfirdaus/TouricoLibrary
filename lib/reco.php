@@ -1,18 +1,8 @@
 <?php 
 
 require '../vendor/autoload.php';
-class Settings {
-public $username;
-public $testEnvironment;
-/**
- * In the array settings the "testEnvironment" is optional, being "false" the default value if it is not specified
- */
-public function __constructor($settings) {
-  $this->username = $settings["user"];
-  $this->testEnvironment = isset($settings["testEnvironment"]) ? $settings["testEnvironment"] : false;
-}
-}
- 
+require '../lib/hotel.php';
+
 
 class RecoWs extends Hotel {
 
