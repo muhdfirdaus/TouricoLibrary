@@ -153,7 +153,7 @@ class Hotel {
 				'bbPublishPrice' => $link->Boardbase->bbPublishPrice
 		];
 			
-		return $hotel.$location.$RoomType.$AvailabilityBreakdown.$Discount.$Occupancy.$PriceBreakdown.$Rooms.$Supplement.$Boardbase;
+		return $Hotel.$Location.$RoomType.$AvailabilityBreakdown.$Discount.$Occupancy.$PriceBreakdown.$Rooms.$Supplement.$Boardbase;
 	
 	
 	}
