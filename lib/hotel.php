@@ -33,6 +33,18 @@ class Hotel {
 	;
 	}
 	
+	function convertParamsIntoTouricoParams($params){
+		
+			foreach($params as $key => $value){
+				if(is_array($value)){
+					convertParamsIntoTouricoParams($value);
+				}else{
+					$xml->addChild($key, $value);
+				}
+			}
+			return $xml->asXML();
+		} 
+	
 	function searchHotel($params){
 			
 		$client = new soapClient($this->baseUrl);
