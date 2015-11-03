@@ -1,6 +1,7 @@
 <?php 
 
-require '../vendor/autoload.php';
+require_once 'vendor/autoload.php';
+
 class Settings {
 public $username;
 public $password;
@@ -47,7 +48,7 @@ class Hotel {
 	
 	function searchHotel($params){
 			
-		$client = new soapClient($this->baseUrl, SOAP_1_2);
+		$client = new soapClient($this->baseUrl);
 		$result	= $client -> searchHotel($this->convertParamsIntoTouricoParams($params));
 		return $this->returnSearchHotels($result);
 	}

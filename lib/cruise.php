@@ -1,7 +1,8 @@
 <?php
 
-require '../vendor/autoload.php';
-require '../lib/hotel.php';
+require_once 'vendor/autoload.php';
+require_once 'lib/hotel.php';
+
 class Cruise{
 	
 	protected $baseUrl;
