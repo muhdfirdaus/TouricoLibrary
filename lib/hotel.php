@@ -27,7 +27,7 @@ class Hotel {
 
 	function __constructor($settings) {
 	$this->baseUrl = $settings->testEnvironment == true ? 
-  	"http://test.demo-hotelws.touricoholidays.com/HotelFlow.svc?WSDL"
+  	"http://demo-hotelws.touricoholidays.com/HotelFlow.svc?WSDL"
 	:
   	"http://demo-hotelws.touricoholidays.com/HotelFlow.svc?WSDL"
 	;
@@ -47,7 +47,7 @@ class Hotel {
 	
 	function searchHotel($params){
 			
-		$client = new soapClient($this->baseUrl);
+		$client = new soapClient($this->baseUrl, SOAP_1_2);
 		$result	= $client -> searchHotel($this->convertParamsIntoTouricoParams($params));
 		return $this->returnSearchHotels($result);
 	}
